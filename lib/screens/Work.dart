@@ -4,10 +4,9 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:health_application/LineChart.dart';
-import 'package:health_application/LineChartParameters.dart';
-import 'package:health_application/User.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:health_application/builders/LineChart.dart';
+import 'package:health_application/builders/LineChartParameters.dart';
+import 'package:health_application/builders/User.dart';
 
 class Work extends StatefulWidget {
   @override

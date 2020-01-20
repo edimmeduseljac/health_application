@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:health_application/Calories.dart';
-import 'package:health_application/FastInSlowOutPageBuilder.dart';
-import 'package:health_application/Homepage.dart';
-import 'package:health_application/Sleep.dart';
-import 'package:health_application/Sports.dart';
-import 'package:health_application/User.dart';
-import 'package:health_application/Weight.dart';
-import 'package:health_application/Work.dart';
-import 'package:health_application/Workouts.dart';
+import 'package:health_application/screens/Calories.dart';
+import 'package:health_application/builders/FastInSlowOutPageBuilder.dart';
+import 'package:health_application/screens/Homepage.dart';
+import 'package:health_application/screens/Sleep.dart';
+import 'package:health_application/screens/Sports.dart';
+import 'package:health_application/builders/User.dart';
+import 'package:health_application/screens/Weight.dart';
+import 'package:health_application/screens/Work.dart';
+import 'package:health_application/screens/Workouts.dart';
 
 import 'Nutrition.dart';
 

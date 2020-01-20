@@ -6,9 +6,9 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-import 'LineChart.dart';
-import 'LineChartParameters.dart';
-import 'User.dart';
+import '../builders/LineChart.dart';
+import '../builders/LineChartParameters.dart';
+import '../builders/User.dart';
 
 class Sports extends StatefulWidget {
   @override

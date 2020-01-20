@@ -29,7 +29,7 @@ class User {
     return currentScore;
   }
 
-  int setCurrentSportsMinutes(int ) {
+  void setCurrentSportsMinutes(int ) {
     this.currentSportsMinutes = currentSportsMinutes;
   }
 

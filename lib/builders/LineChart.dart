@@ -1,6 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'LineChartParameters.dart';
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
