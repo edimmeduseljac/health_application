@@ -27,11 +27,11 @@ dependencies:
   font_awesome_flutter: ^8.5.0
   percent_indicator: ^2.1.1+1
   charts_flutter: ^0.8.1
+  flutter_sequence_animation: "^3.0.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 
 # For information on the generic Dart part of this file, see the
@@ -39,7 +39,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

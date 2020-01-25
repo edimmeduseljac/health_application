@@ -117,7 +117,7 @@ class WorkState extends State<Work> {
                     child: Center(
                       child: Column(
                         children: <Widget>[
-                            EmissionChart(id: "Worked hours", data: data),
+                            LineChart(id: "Worked hours", data: data),
                               ]
                             )
                     ),

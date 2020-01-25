@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:health_application/builders/StaggerdAnimation.dart';
+import 'package:health_application/screens/AddData.dart';
 import 'package:health_application/screens/Calories.dart';
 import 'package:health_application/builders/FastInSlowOutPageBuilder.dart';
 import 'package:health_application/screens/Homepage.dart';
@@ -27,7 +29,7 @@ class DashboardState extends State<Dashboard> {
       appBar: AppBar(
         brightness: Brightness.light,
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 12,
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -37,11 +39,11 @@ class DashboardState extends State<Dashboard> {
         title: Text("Dashboard", style: TextStyle(color: Colors.grey[800], fontSize: 20),),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(0.0),
             child: IconButton(
-              color: Colors.green,
+              color: Colors.grey,
               icon: Icon(Icons.account_circle),
-              iconSize: 30,
+              iconSize: 35,
               onPressed: () {},
             ),
           )
@@ -53,7 +55,56 @@ class DashboardState extends State<Dashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 10,),
+              SizedBox(height: 20),
+              Text("Quick functions", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800])),
+              SizedBox(height: 20),
+              Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    width: 100,
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                            colors: [
+                              Colors.grey,
+                              Colors.grey[300].withOpacity(0.8)
+                            ]
+                        )
+                    ),
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        Navigator.push(context, FastInSlowOutPageRoute(widget: AddData()));
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Text("Add data", style: TextStyle(color: Colors.white, fontSize: 30),),
+                                  SizedBox(width: 150),
+                                  Icon(
+                                    Icons.add_circle,
+                                    size: 50,
+                                    color: Colors.grey,
+                                  ),
+                                ]
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ]
+          ),
+              SizedBox(height: 40),
               Text("Average statistics", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]),),
               SizedBox(height: 20,),
               Row(

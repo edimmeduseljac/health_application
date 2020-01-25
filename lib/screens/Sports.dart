@@ -166,7 +166,7 @@ class SportsState extends State<Sports> {
                         child: Center(
                             child: Column(
                                 children: <Widget>[
-                                  EmissionChart(id: "Worked hours", data: data),
+                                  LineChart(id: "Worked hours", data: data),
                                 ]
                             )
                         ),

@@ -13,6 +13,17 @@ class User {
   List<int> foodKcal = [12,13,24,1000];
   int sportsGoal = 30;
   int currentSportsMinutes;
+  int caloriesScore;
+  int calories;
+
+  int getCaloriesScore() {
+    caloriesScore = 2500;
+    return caloriesScore;
+  }
+
+  void setCalories() {
+    this.calories = calories;
+  }
 
   int getGoal() {
     sportsGoal = 30;

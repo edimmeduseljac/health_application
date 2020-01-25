@@ -3,11 +3,11 @@ import 'LineChartParameters.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class EmissionChart extends StatelessWidget {
+class LineChart extends StatelessWidget {
   final List<LineChartParameters> data;
   final String id;
 
-  EmissionChart({@required this.data, @required this.id, selectionModels});
+  LineChart({@required this.data, @required this.id, selectionModels});
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,11 @@ class EmissionChart extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: charts.LineChart(series, animate: true),
-                  ),
-                ]
-                ),
               ),
+            ]
           ),
-        );
+        ),
+      ),
+    );
   }
 }
