@@ -14,105 +14,26 @@ class AddData extends StatefulWidget {
   AddDataState createState() => AddDataState();
 }
 
+bool isDrink = false;
+bool isFood = false;
 
-User user = new User();
-
-final List<LineChartParameters> data = [
-  LineChartParameters(
-    week: 1,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  ),
-  LineChartParameters(
-    week: 2,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  ),
-  LineChartParameters(
-    week: 3,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  ),
-  LineChartParameters(
-    week: 4,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  ),
-  LineChartParameters(
-    week: 5,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  ),
-  LineChartParameters(
-    week: 6,
-    hours: Random().nextInt(40),
-    barColor: charts.ColorUtil.fromDartColor(Color(0xFF000000)),
-  )
-];
-
-String determineText() {
-  String text;
-  if ((user.getSportsScore() / 100) == 1.0)
-  {
-    text = "Goal reached!";
+Icon determineConsumedIcon() {
+  Icon icon;
+  if (isDrink == true) {
+    icon: Icon(
+      Icons.restaurant,
+      size: 18,
+      color: Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0).withOpacity(1.0),
+    );
   }
-  else {
-    text = user.getSportsScore().toString() + " %";
+  else if (isFood == true) {
+    icon: Icon(
+      Icons.local_drink,
+      size: 18,
+      color: Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0).withOpacity(1.0),
+    );
   }
-  return text;
-}
-
-double heightAnimatedWater = 155;
-double heightAnimatedBeer = 155;
-double heightContainingContainer = 155;
-bool isExtended = false;
-double iconSize = 52.5;
-
-
-Center determineWidgetWater() {
-  if (heightAnimatedWater == 250) {
-    try {
-      return Center(
-        child: Container(
-            child: IconButton(
-              icon: Icon(Icons.plus_one),
-              iconSize: 52.5,
-              color: Colors.white,
-              onPressed: () {},
-            )
-        ),
-      );
-    }
-    catch(e) {
-      print(e);
-    }
-  }
-  else {
-    return Center();
-  }
-}
-
-Center determineWidgetBeer() {
-  if (heightAnimatedBeer == 250) {
-    try {
-      return Center(
-        child: Container(
-            child: IconButton(
-              icon: Icon(Icons.plus_one),
-              iconSize: 52.5,
-              color: Colors.white,
-              onPressed: () {},
-            )
-        ),
-      );
-    }
-    catch(e) {
-      print(e);
-    }
-  }
-  else {
-    return Center();
-  }
+  return icon;
 }
 
 class AddDataState extends State<AddData> {
@@ -173,38 +94,36 @@ class AddDataState extends State<AddData> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(35),
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
-                          height: heightContainingContainer,
+                        padding: EdgeInsets.only(left: 35, right: 35, top: 35, bottom: 20),
+                        child: Container(
                           child: Row(
                             children: <Widget>[
                               Expanded(
                                 child: Align(
                                 alignment: Alignment.topCenter,
-                                  child: AnimatedContainer(
-                                    duration: Duration(seconds: 1),
-                                    height: heightAnimatedWater,
+                                  child: Container(
+                                    height: 155,
+                                    width: 175,
                                     alignment: Alignment.bottomCenter,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(35),
-                                        border: Border.all(
-                                          color: Colors.blue[500],
-                                          width: 2,
-                                        ),
-                                        gradient: LinearGradient(
-                                            colors: [
-                                              Colors.lightBlueAccent.withOpacity(0.9),
-                                              Colors.blue,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(35),
+                                            border: Border.all(
+                                              color: Colors.blue[500],
+                                              width: 2,
+                                            ),
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  Colors.lightBlueAccent.withOpacity(0.9),
+                                                  Colors.blue,
+                                                ]
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.blue,
+                                                blurRadius: 15.0,
+                                                spreadRadius: 0.0,
+                                              ),
                                             ]
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.blue,
-                                            blurRadius: 15.0,
-                                            spreadRadius: 0.0,
-                                          ),
-                                        ]
                                     ),
                                     padding: EdgeInsets.all(5),
                                     child: Padding(
@@ -215,24 +134,14 @@ class AddDataState extends State<AddData> {
                                                 child: IconButton(
                                                   icon: Icon(Icons.local_drink),
                                                   color: Colors.white,
+                                                  splashColor: Colors.transparent,
                                                   iconSize: 115,
                                                   onPressed: () {
                                                     setState(() {
-                                                      if (heightAnimatedWater < 250)
-                                                      {
-                                                        heightAnimatedBeer = 155;
-                                                        heightAnimatedWater = 250;
-                                                        heightContainingContainer = 255;
-                                                      }
-                                                      else {
-                                                        heightAnimatedWater = 155;
-                                                        heightContainingContainer = 155;
-                                                      }
                                                     });
                                                   },
                                                 )
                                             ),
-                                            determineWidgetWater(),
                                           ],
                                         )
                                     )
@@ -243,9 +152,9 @@ class AddDataState extends State<AddData> {
                               Expanded(
                                 child: Align(
                                   alignment: Alignment.topCenter,
-                                  child: AnimatedContainer(
-                                    height: heightAnimatedBeer,
-                                    duration: Duration(seconds: 1),
+                                  child: Container(
+                                    height: 155,
+                                    width: 175,
                                     alignment: Alignment.bottomCenter,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(35),
@@ -269,36 +178,26 @@ class AddDataState extends State<AddData> {
                                     ),
                                     padding: EdgeInsets.only(left: 5, right: 5),
                                     child: Padding(
-                                        padding: EdgeInsets.all(5),
+                                        padding: EdgeInsets.only(left: 5, top: 2),
                                         child: Column(
                                           children: <Widget>[
                                             Padding(
-                                            padding: EdgeInsets.only(left: 15, bottom: 10),
+                                            padding: EdgeInsets.all(5),
                                             child: Column(
                                               children:<Widget>[
-                                                RawMaterialButton(
-                                                  onPressed: () {},
-                                                    child: IconButton(
-                                                      icon: Icon(FontAwesomeIcons.beer),
-                                                      color: Colors.white,
-                                                      iconSize: 115,
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          if (heightAnimatedBeer < 250) {
-                                                            heightAnimatedWater = 155;
-                                                            heightAnimatedBeer = 250;
-                                                            heightContainingContainer = 255;
-                                                            isExtended = true;
-                                                          }
-                                                          else {
-                                                            heightAnimatedBeer = 155;
-                                                            heightContainingContainer = 155;
-                                                          }
-                                                        });
-                                                      },
-                                                    )
+                                                Center(
+                                                  child: RawMaterialButton(
+                                                    onPressed: () {},
+                                                      child: IconButton(
+                                                        icon: Icon(FontAwesomeIcons.beer),
+                                                        color: Colors.white,
+                                                        iconSize: 113,
+                                                        splashColor: Colors.transparent,
+                                                        onPressed: () {
+                                                        },
+                                                      )
+                                                    ),
                                                   ),
-                                                determineWidgetBeer(),
                                                 ],
                                               ),
                                             ),
@@ -312,6 +211,60 @@ class AddDataState extends State<AddData> {
                           ),
                         ),
                       ),
+                      Center(
+                          child: Container(
+                            height: 155,
+                            width: 160,
+                            alignment: Alignment.bottomCenter,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(35),
+                                border: Border.all(
+                                  color: Colors.green[500],
+                                  width: 2,
+                                ),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Colors.lightGreenAccent.withOpacity(0.9),
+                                      Colors.green,
+                                    ]
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.green,
+                                    blurRadius: 15.0,
+                                    spreadRadius: 0.0,
+                                  ),
+                                ]
+                              ),
+                              child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: Column(
+                                          children:<Widget>[
+                                            Center(
+                                              child: RawMaterialButton(
+                                                  onPressed: () {},
+                                                  child: IconButton(
+                                                    icon: Icon(Icons.local_cafe),
+                                                    color: Colors.white,
+                                                    iconSize: 115,
+                                                    splashColor: Colors.transparent,
+                                                    onPressed: () {
+                                                    },
+                                                  )
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              )
+                          ),
+                      ),
                       SizedBox(height: 40),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -319,28 +272,79 @@ class AddDataState extends State<AddData> {
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: EdgeInsets.only(left: 35),
-                              child: Text("Goal of today:", style: TextStyle(fontSize: 28, color: Colors.black),
+                              child: Text("Consumed:", style: TextStyle(fontSize: 28, color: Colors.black),
                               ) ,
                             )
                         ),
                       ),
                       SizedBox(height: 20),
-                      Container(
-                        child: Center(
+                      Padding(
+                        padding: EdgeInsets.only(right: 35, left: 35, top: 10, bottom: 20),
+                        child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white
+                            ),
                             child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  new CircularPercentIndicator(
-                                    radius: 240.0,
-                                    lineWidth: 20.0,
-                                    animation: true,
-                                    percent: user.getSportsScore() / 100,
-                                    center: new Text(
-                                      determineText(),
-                                      style:
-                                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(right: 10, left: 10),
+                                    decoration: BoxDecoration(
+                                      // borderRadius: BorderRadius.circular(10),
+                                        border: Border(bottom: BorderSide(color: Colors.grey))
                                     ),
-                                    circularStrokeCap: CircularStrokeCap.round,
-                                    progressColor: Colors.green,
+                                    child:new RawMaterialButton(
+                                      child: new Row(
+                                        children: <Widget>[
+                                          determineConsumedIcon(),
+                                          new Padding(
+                                            padding: EdgeInsets.all(20),
+                                            child: new Text("Nutrition", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(right: 10, left: 10),
+                                    decoration: BoxDecoration(
+                                      // borderRadius: BorderRadius.circular(10),
+                                        border: Border(bottom: BorderSide(color: Colors.grey))
+                                    ),
+                                    child:new RawMaterialButton(
+                                      child: new Row(
+                                        children: <Widget>[
+                                          determineConsumedIcon(),
+                                          new Padding(
+                                            padding: EdgeInsets.all(20),
+                                            child: new Text("Workouts", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(right: 10, left: 10),
+                                    child:new RawMaterialButton(
+                                      child: new Row(
+                                        children: <Widget>[
+                                          new Icon(
+                                            FontAwesomeIcons.weight,
+                                            color: Colors.cyan,
+                                            size: 18,
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.all(20),
+                                            child: new Text("Weight", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ]
                             )
@@ -358,129 +362,10 @@ class AddDataState extends State<AddData> {
                             )
                         ),
                       ),
-                      Container(
-                        child: Center(
-                            child: Column(
-                                children: <Widget>[
-                                  LineChart(id: "Worked hours", data: data),
-                                ]
-                            )
-                        ),
-                      ),
                       Padding(
                         padding: EdgeInsets.only(left: 35, bottom: 15),
                         child: Text("Details:", style: TextStyle(fontSize: 28, color: Colors.black),
                         ) ,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                            padding: EdgeInsets.all(0),
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                width: 350,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Colors.deepOrange,
-                                        Colors.deepOrangeAccent.withOpacity(0.6)
-                                      ]
-                                  ),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      FontAwesomeIcons.calendarDay,
-                                      color: Colors.black,
-                                      size: 18,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text("Daily average: " + user.getSports().toString() + " min.", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black))
-                                    ),
-                                  ],
-                                )
-                            )
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                            padding: EdgeInsets.all(0),
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                width: 350,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Colors.brown,
-                                        Colors.brown.withOpacity(0.8)
-                                      ]
-                                  ),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      FontAwesomeIcons.walking,
-                                      color: Colors.black,
-                                      size: 18,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text("Total excercise time: " + user.getSumWork().toString() + " h", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black))
-                                    ),
-                                  ],
-                                )
-                            )
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                            padding: EdgeInsets.all(0),
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                width: 350,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Colors.lime,
-                                        Colors.limeAccent.withOpacity(0.8)
-                                      ]
-                                  ),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      FontAwesomeIcons.award,
-                                      color: Colors.black,
-                                      size: 18,
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text("Daily goal: " + user.getGoal().toString() + " min", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black))
-                                    ),
-                                  ],
-                                )
-                            )
-                        ),
                       ),
                       SizedBox(height: 20),
                     ]
